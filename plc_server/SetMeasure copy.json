@@ -1,0 +1,114 @@
+[
+  {
+    "voltage": 60,
+    "output": 727
+  },
+  {
+    "voltage": 70,
+    "output": 848
+  },
+  {
+    "voltage": 80,
+    "output": 970
+  },
+  {
+    "voltage": 90,
+    "output": 1091
+  },
+  {
+    "voltage": 100,
+    "output": 1212
+  },
+  {
+    "voltage": 110,
+    "output": 1333
+  },
+  {
+    "voltage": 120,
+    "output": 1455
+  },
+  {
+    "voltage": 130,
+    "output": 1576
+  },
+  {
+    "voltage": 140,
+    "output": 1697
+  },
+  {
+    "voltage": 150,
+    "output": 1818
+  },
+  {
+    "voltage": 160,
+    "output": 1939
+  },
+  {
+    "voltage": 170,
+    "output": 2061
+  },
+  {
+    "voltage": 180,
+    "output": 2182
+  },
+  {
+    "voltage": 190,
+    "output": 2303
+  },
+  {
+    "voltage": 200,
+    "output": 2424
+  },
+  {
+    "voltage": 210,
+    "output": 2545
+  },
+  {
+    "voltage": 220,
+    "output": 2667
+  },
+  {
+    "voltage": 230,
+    "output": 2788
+  },
+  {
+    "voltage": 240,
+    "output": 2909
+  },
+  {
+    "voltage": 250,
+    "output": 3030
+  },
+  {
+    "voltage": 260,
+    "output": 3152
+  },
+  {
+    "voltage": 270,
+    "output": 3273
+  },
+  {
+    "voltage": 280,
+    "output": 3394
+  },
+  {
+    "voltage": 290,
+    "output": 3515
+  },
+  {
+    "voltage": 300,
+    "output": 3636
+  },
+  {
+    "voltage": 310,
+    "output": 3758
+  },
+  {
+    "voltage": 320,
+    "output": 3879
+  },
+  {
+    "voltage": 330,
+    "output": 4000
+  }
+]

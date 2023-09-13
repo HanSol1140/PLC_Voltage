@@ -1,0 +1,117 @@
+#Settings{
+    font-size: 24px;
+    width: 100%;
+}
+
+#Settings div{
+    margin: 0 auto;
+    width: 1200px;
+    /* border: 1px solid #000; */
+}
+#Settings div input {
+    padding: 4px;
+}
+#Settings div button{
+    background-color: #33B84C;
+    border-radius: 4px;
+    border: none;
+    cursor:pointer;
+}
+#Settings div button:hover{
+    background-color: #228833;
+}
+background-color: #33B84C;
+#Settings div ul{}
+
+#Settings div input {
+    font-size: 20px;
+    border-radius: 4px;
+}
+#Settings div .scale{
+    display: flex;
+}
+#Settings div .scale li{
+    padding: 4px;
+    font-size: 20px;
+    width: 50%
+}
+#Settings div .scale button{
+    width: 300px;
+    height: 40px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+
+#Settings div .input ul{
+    width: 100%;
+    display: flex;
+
+}
+#Settings div .input li{
+    padding: 4px;
+    width: 400px;
+}
+#Settings div .input .inputvalue button{
+    width: 300px;
+    height: 40px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#Settings #line {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 1200px;
+    height: 3px;
+    border-radius: 4px;
+    background-color: #ccc;
+}
+
+#Settings .measure .measurename{
+    width: 100%;
+    display: flex;
+}
+#Settings .measure .measurename li{
+
+    width: 400px;
+    padding: 4px;
+}
+
+#Settings .measure .measurelist {
+    width: 100%;
+    display: flex;
+    
+}
+
+#Settings .measure .measurelist li{
+    display: flex;
+    width: 400px;
+    padding: 4px;
+    border: 1px solid #000;
+    
+}
+#Settings .measure .measurelist li:nth-child(3){
+    justify-content: center;
+}
+
+#Settings .measure .measurelist li button{
+    width: 150px;
+    padding: 4px;
+    font-size: 20px;
+    text-align: center;
+}
+
+#Settings .measure .measurelist li button:nth-child(1){
+    margin-right: 20px;
+    background-color: #df312e;
+}
+#Settings .measure .measurelist li button:nth-child(1):hover{
+    background-color: #ad101e;
+}
+#Settings .measure .measurelist li button:nth-child(2){
+    margin-left: 20px;
+}
