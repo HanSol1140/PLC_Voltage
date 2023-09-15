@@ -1,4 +1,4 @@
-import * as PLCService from '../service/plcService';
+import * as PLCService from '/home/nanonix/PLC_Voltage/plc_server/service/plcService';
 
 export const connect = (ip:string, port:number) => {
     try {

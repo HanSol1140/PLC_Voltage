@@ -24,7 +24,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getMeasureList = exports.deleteMeasure = exports.saveEditMeasure = exports.readMeasureList = exports.setMeasure = void 0;
-const MeasureModel = __importStar(require("../model/measureModel.js"));
+const MeasureModel = __importStar(require("/home/nanonix/PLC_Voltage/plc_server/model/measureModel.js"));
 const setMeasure = (req, res) => {
     try {
         const sendVoltage = Number(req.query.sendVoltage);

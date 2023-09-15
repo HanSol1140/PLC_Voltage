@@ -2,15 +2,15 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 // 라우터
-import ipRoutes from './routers/ipRoutes';
-import scaleRoutes from './routers/scaleRoutes';
-import measureRoutes from './routers/measureRoutes';
+import ipRoutes from '/home/nanonix/PLC_Voltage/plc_server/routers/ipRoutes';
+import scaleRoutes from '/home/nanonix/PLC_Voltage/plc_server/routers/scaleRoutes';
+import measureRoutes from '/home/nanonix/PLC_Voltage/plc_server/routers/measureRoutes';
 
 // 컨트롤러 호출
-import * as IPController from './controller/ipController';
-import * as MeasureController from './controller/measureController';
-import * as ScaleController from './controller/scaleController';
-import * as PLC from './controller/plcController';
+import * as IPController from '/home/nanonix/PLC_Voltage/plc_server/controller/ipController';
+import * as MeasureController from '/home/nanonix/PLC_Voltage/plc_server/controller/measureController';
+import * as ScaleController from '/home/nanonix/PLC_Voltage/plc_server/controller/scaleController';
+import * as PLC from '/home/nanonix/PLC_Voltage/plc_server/controller/plcController';
 
 const app = express();
 app.use(express.json());
@@ -36,7 +36,11 @@ app.use('/', measureRoutes);
 
 // 모든경로 index.html로 라우팅(SPA)
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, '/home/nanonix/PLC_Voltage/plc_server/build/index.html'), function(err){
+        if(err){
+            res.status(500).send(err);
+        }
+    });
 });
 
 

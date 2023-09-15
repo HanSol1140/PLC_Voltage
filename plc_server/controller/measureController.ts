@@ -1,5 +1,5 @@
 import express, { Request, Response, Router } from 'express';
-import * as MeasureModel from '../model/measureModel.js';
+import * as MeasureModel from '/home/nanonix/PLC_Voltage/plc_server/model/measureModel.js';
 
 export const setMeasure = (req:Request, res:Response) => {
     try {

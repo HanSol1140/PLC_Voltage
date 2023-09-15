@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import * as ScaleController from '../controller/scaleController.js';
+import * as ScaleController from '/home/nanonix/PLC_Voltage/plc_server/controller/scaleController.js';
 
 const router: Router = express.Router();
 

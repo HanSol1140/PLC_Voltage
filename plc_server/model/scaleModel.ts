@@ -1,7 +1,7 @@
 import fs from 'fs';
-const filePath = 'SetScale.json';
+const filePath = '/home/nanonix/PLC_Voltage/plc_server/SetScale.json';
 
-export const setScaleData = (inputScale: number :outputScale:number) => {
+export const setScaleData = (inputScale: number, outputScale:number) => {
     const data = {
         inputScale: inputScale,
         outputScale: outputScale

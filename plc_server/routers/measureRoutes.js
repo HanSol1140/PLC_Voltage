@@ -27,7 +27,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const MeasureController = __importStar(require("../controller/measureController.js"));
+const MeasureController = __importStar(require("/home/nanonix/PLC_Voltage/plc_server/controller/measureController.js"));
 const router = express_1.default.Router();
 // scale 값 설정 및 브라우저에 출력
 router.get('/api/setmeasure', MeasureController.setMeasure);

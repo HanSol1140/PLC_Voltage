@@ -27,7 +27,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const IPController = __importStar(require("../controller/ipController.js"));
+const IPController = __importStar(require("/home/nanonix/PLC_Voltage/plc_server/controller/ipController.js"));
 const router = express_1.default.Router();
 // scale 값 설정 및 브라우저에 출력
 router.get('/api/setplcip', IPController.setIP);

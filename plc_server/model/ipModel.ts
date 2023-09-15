@@ -1,5 +1,5 @@
 import fs from 'fs';
-const filePath = 'SetIP.json';
+const filePath = '/home/nanonix/PLC_Voltage/plc_server/SetIP.json';
 
 export const setIPData = (ip:string) => {
     const data = { plcIP: ip };

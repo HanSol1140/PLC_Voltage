@@ -18,7 +18,7 @@ const client = new modbus_serial_1.default();
 const IP = '192.168.1.2';
 const Port = 502;
 // Modbus TCP로 연결
-const MAX_RETRIES = 5; // 최대 재시도 횟수
+const MAX_RETRIES = 10; // 최대 재시도 횟수
 const RETRY_INTERVAL = 5000; // 재시도 간격 (5초)
 // Modbus TCP로 연결
 const connectToPLC = (IP, Port) => __awaiter(void 0, void 0, void 0, function* () {

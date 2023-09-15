@@ -1,5 +1,5 @@
 import fs from 'fs';
-const filePath = 'SetMeasure.json';
+const filePath = '/home/nanonix/PLC_Voltage/plc_server/SetMeasure.json';
 interface MeasuerData {
     sendVoltage: number,
     receiveVoltage : number,
@@ -36,7 +36,7 @@ export const editMeasureData = (oldSendVoltage:number, sendVoltage: number, rece
         sendVoltage: sendVoltage,
         receiveVoltage: receiveVoltage,
         vvcfVoltage: vvcfVoltage,
-    };x``
+    };
 
     data.sort((a: { sendVoltage: number }, b: { sendVoltage: number }) => a.sendVoltage - b.sendVoltage);
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2));

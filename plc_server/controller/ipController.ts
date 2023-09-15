@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express';
-import * as IPModel from '../model/ipModel.js';
+import * as IPModel from '/home/nanonix/PLC_Voltage/plc_server/model/ipModel.js';
 
 
 export const setIP = (req:Request, res:Response) => {

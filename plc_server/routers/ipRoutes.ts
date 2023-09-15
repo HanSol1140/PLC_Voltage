@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import * as IPController from '../controller/ipController.js';
+import * as IPController from '/home/nanonix/PLC_Voltage/plc_server/controller/ipController.js';
 
 const router: Router = express.Router();
 

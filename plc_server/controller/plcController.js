@@ -33,7 +33,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.readVoltageChoice = exports.writeVoltage = exports.readVoltage = exports.connect = void 0;
-const PLCService = __importStar(require("../service/plcService"));
+const PLCService = __importStar(require("/home/nanonix/PLC_Voltage/plc_server/service/plcService"));
 const connect = (ip, port) => {
     try {
         PLCService.connectToPLC(ip, port);

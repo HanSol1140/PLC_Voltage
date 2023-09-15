@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import * as MeasureController from '../controller/measureController.js';
+import * as MeasureController from '/home/nanonix/PLC_Voltage/plc_server/controller/measureController.js';
 
 const router: Router = express.Router();
 

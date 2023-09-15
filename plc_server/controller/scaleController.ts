@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express';
-import * as ScaleModel from '../model/scaleModel.js';
+import * as ScaleModel from '/home/nanonix/PLC_Voltage/plc_server/model/scaleModel.js';
 
 
 export const setScale = (req:Request, res:Response) => {

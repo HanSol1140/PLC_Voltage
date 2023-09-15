@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteMeasureData = exports.editMeasureData = exports.getMeasureData = exports.setMeasureData = void 0;
 const fs_1 = __importDefault(require("fs"));
-const filePath = 'SetMeasure.json';
+const filePath = '/home/nanonix/PLC_Voltage/plc_server/SetMeasure.json';
 const setMeasureData = (data) => {
     if (!fs_1.default.existsSync(filePath)) {
         fs_1.default.writeFileSync(filePath, JSON.stringify([]));
@@ -37,7 +37,6 @@ const editMeasureData = (oldSendVoltage, sendVoltage, receiveVoltage, vvcfVoltag
         receiveVoltage: receiveVoltage,
         vvcfVoltage: vvcfVoltage,
     };
-    x ``;
     data.sort((a, b) => a.sendVoltage - b.sendVoltage);
     fs_1.default.writeFileSync(filePath, JSON.stringify(data, null, 2));
     return data;

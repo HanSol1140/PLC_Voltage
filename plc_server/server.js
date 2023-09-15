@@ -39,14 +39,14 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const path_1 = __importDefault(require("path"));
 // 라우터
-const ipRoutes_1 = __importDefault(require("./routers/ipRoutes"));
-const scaleRoutes_1 = __importDefault(require("./routers/scaleRoutes"));
-const measureRoutes_1 = __importDefault(require("./routers/measureRoutes"));
+const ipRoutes_1 = __importDefault(require("/home/nanonix/PLC_Voltage/plc_server/routers/ipRoutes"));
+const scaleRoutes_1 = __importDefault(require("/home/nanonix/PLC_Voltage/plc_server/routers/scaleRoutes"));
+const measureRoutes_1 = __importDefault(require("/home/nanonix/PLC_Voltage/plc_server/routers/measureRoutes"));
 // 컨트롤러 호출
-const IPController = __importStar(require("./controller/ipController"));
-const MeasureController = __importStar(require("./controller/measureController"));
-const ScaleController = __importStar(require("./controller/scaleController"));
-const PLC = __importStar(require("./controller/plcController"));
+const IPController = __importStar(require("/home/nanonix/PLC_Voltage/plc_server/controller/ipController"));
+const MeasureController = __importStar(require("/home/nanonix/PLC_Voltage/plc_server/controller/measureController"));
+const ScaleController = __importStar(require("/home/nanonix/PLC_Voltage/plc_server/controller/scaleController"));
+const PLC = __importStar(require("/home/nanonix/PLC_Voltage/plc_server/controller/plcController"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());

@@ -24,7 +24,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getIP = exports.readIP = exports.setIP = void 0;
-const IPModel = __importStar(require("../model/ipModel.js"));
+const IPModel = __importStar(require("/home/nanonix/PLC_Voltage/plc_server/model/ipModel.js"));
 const setIP = (req, res) => {
     try {
         console.log("ip저장시도");

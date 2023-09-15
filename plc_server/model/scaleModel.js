@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getScaleData = exports.setScaleData = void 0;
 const fs_1 = __importDefault(require("fs"));
-const filePath = 'SetScale.json';
+const filePath = '/home/nanonix/PLC_Voltage/plc_server/SetScale.json';
 const setScaleData = (inputScale, outputScale) => {
     const data = {
         inputScale: inputScale,

@@ -24,7 +24,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getScale = exports.readScale = exports.setScale = void 0;
-const ScaleModel = __importStar(require("../model/scaleModel.js"));
+const ScaleModel = __importStar(require("/home/nanonix/PLC_Voltage/plc_server/model/scaleModel.js"));
 const setScale = (req, res) => {
     try {
         const inputScale = req.query.inputScale;
