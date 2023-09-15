@@ -32,19 +32,6 @@ app.use('/', ipRoutes);
 app.use('/', scaleRoutes);
 app.use('/', measureRoutes);
 
-// app.get('/', (req, res) => {
-//     res.redirect('/home/nanonix/PLC_Voltage/plc_server/build');
-// });
-
-// 모든경로 index.html로 라우팅(SPA)
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '/home/nanonix/PLC_Voltage/plc_server/build/index.html'), function(err){
-        if(err){
-            res.status(500).send(err);
-        }
-    });
-});
-
 
 
 // SetIP.json 메모리에 로드
@@ -130,3 +117,4 @@ async function dataChange (inputValue: number) {
         }
     }
 }
+
