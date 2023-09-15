@@ -32,10 +32,6 @@ app.use('/', ipRoutes);
 app.use('/', scaleRoutes);
 app.use('/', measureRoutes);
 
-// app.get('/', (req, res) => {
-//     res.redirect('/home/nanonix/PLC_Voltage/plc_server/build');
-// });
-
 // 모든경로 index.html로 라우팅(SPA)
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '/home/nanonix/PLC_Voltage/plc_server/build/index.html'), function(err){
@@ -44,8 +40,6 @@ app.get('*', (req, res) => {
         }
     });
 });
-
-
 
 // SetIP.json 메모리에 로드
 const plcIP = IPController.getIP().plcIP;
@@ -65,7 +59,7 @@ console.log(measureData);
 // PLC 통신 설정
 
 // 5초마다 접속시도, 5번까지 시도함
-PLC.connect(plcIP, 502);
+// PLC.connect(plcIP, 502);
 
 let previousVoltage:any = 0;
 
@@ -130,3 +124,4 @@ async function dataChange (inputValue: number) {
         }
     }
 }
+
