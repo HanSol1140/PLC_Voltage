@@ -12,7 +12,7 @@ const setMeasureData = (data) => {
     }
     const uploadData = JSON.parse(fs_1.default.readFileSync(filePath, 'utf8'));
     uploadData.push(data);
-    uploadData.sort((a, b) => a.voltage - b.voltage);
+    uploadData.sort((a, b) => a.sendVoltage - b.sendVoltage);
     fs_1.default.writeFileSync(filePath, JSON.stringify(uploadData, null, 2));
 };
 exports.setMeasureData = setMeasureData;
@@ -23,29 +23,34 @@ const getMeasureData = () => {
     return JSON.parse(fs_1.default.readFileSync(filePath, 'utf8'));
 };
 exports.getMeasureData = getMeasureData;
-const editMeasureData = (oldVoltage, newMeasureData) => {
+const editMeasureData = (oldSendVoltage, sendVoltage, receiveVoltage, vvcfVoltage) => {
     if (!fs_1.default.existsSync(filePath)) {
         throw new Error("파일을 찾을 수 없습니다.");
     }
     const data = JSON.parse(fs_1.default.readFileSync(filePath, 'utf8'));
-    const index = data.findIndex((item) => item.voltage === oldVoltage);
+    const index = data.findIndex((item) => item.sendVoltage === oldSendVoltage);
     if (index === -1) {
         throw new Error("전압을 찾을 수 없습니다.");
     }
-    data[index] = newMeasureData;
-    data.sort((a, b) => a.voltage - b.voltage);
+    data[index] = {
+        sendVoltage: sendVoltage,
+        receiveVoltage: receiveVoltage,
+        vvcfVoltage: vvcfVoltage,
+    };
+    x ``;
+    data.sort((a, b) => a.sendVoltage - b.sendVoltage);
     fs_1.default.writeFileSync(filePath, JSON.stringify(data, null, 2));
+    return data;
 };
 exports.editMeasureData = editMeasureData;
-const deleteMeasureData = (voltage, output) => {
-    console.log("voltage:", voltage);
-    console.log("output:", output);
+const deleteMeasureData = (sendVoltage) => {
+    console.log(sendVoltage);
     if (!fs_1.default.existsSync(filePath)) {
         throw new Error("파일을 찾을 수 없습니다.");
     }
     const data = JSON.parse(fs_1.default.readFileSync(filePath, 'utf8'));
-    const filterData = data.filter((item) => item.voltage !== voltage);
-    filterData.sort((a, b) => a.voltage - b.voltage);
+    const filterData = data.filter((item) => item.sendVoltage !== sendVoltage);
+    data.sort((a, b) => a.sendVoltage - b.sendVoltage);
     if (data.length === filterData.length) {
         throw new Error("해당 전압 값이 목록에 없습니다.");
     }

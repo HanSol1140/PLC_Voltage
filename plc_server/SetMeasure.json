@@ -1,114 +1,142 @@
 [
   {
-    "voltage": 60,
-    "output": 727
+    "sendVoltage": 60,
+    "receiveVoltage": 809,
+    "vvcfVoltage": 65.8
   },
   {
-    "voltage": 70,
-    "output": 848
+    "sendVoltage": 70,
+    "receiveVoltage": 930,
+    "vvcfVoltage": 75.7
   },
   {
-    "voltage": 80,
-    "output": 970
+    "sendVoltage": 80,
+    "receiveVoltage": 1049,
+    "vvcfVoltage": 85.5
   },
   {
-    "voltage": 90,
-    "output": 1091
+    "sendVoltage": 90,
+    "receiveVoltage": 1166,
+    "vvcfVoltage": 95.3
   },
   {
-    "voltage": 100,
-    "output": 1212
+    "sendVoltage": 100,
+    "receiveVoltage": 1284,
+    "vvcfVoltage": 105
   },
   {
-    "voltage": 110,
-    "output": 1333
+    "sendVoltage": 110,
+    "receiveVoltage": 1403,
+    "vvcfVoltage": 114.8
   },
   {
-    "voltage": 120,
-    "output": 1455
+    "sendVoltage": 120,
+    "receiveVoltage": 1521,
+    "vvcfVoltage": 124.6
   },
   {
-    "voltage": 130,
-    "output": 1576
+    "sendVoltage": 130,
+    "receiveVoltage": 1639,
+    "vvcfVoltage": 134.4
   },
   {
-    "voltage": 140,
-    "output": 1697
+    "sendVoltage": 140,
+    "receiveVoltage": 1758,
+    "vvcfVoltage": 144.1
   },
   {
-    "voltage": 150,
-    "output": 1818
+    "sendVoltage": 150,
+    "receiveVoltage": 1877,
+    "vvcfVoltage": 153.9
   },
   {
-    "voltage": 160,
-    "output": 1939
+    "sendVoltage": 160,
+    "receiveVoltage": 1995,
+    "vvcfVoltage": 163.6
   },
   {
-    "voltage": 170,
-    "output": 2061
+    "sendVoltage": 170,
+    "receiveVoltage": 2113,
+    "vvcfVoltage": 173.4
   },
   {
-    "voltage": 180,
-    "output": 2182
+    "sendVoltage": 180,
+    "receiveVoltage": 2230,
+    "vvcfVoltage": 183
   },
   {
-    "voltage": 190,
-    "output": 2303
+    "sendVoltage": 190,
+    "receiveVoltage": 2347,
+    "vvcfVoltage": 192.7
   },
   {
-    "voltage": 200,
-    "output": 2424
+    "sendVoltage": 200,
+    "receiveVoltage": 2464,
+    "vvcfVoltage": 202.4
   },
   {
-    "voltage": 210,
-    "output": 2545
+    "sendVoltage": 210,
+    "receiveVoltage": 2583,
+    "vvcfVoltage": 212.1
   },
   {
-    "voltage": 220,
-    "output": 2667
+    "sendVoltage": 220,
+    "receiveVoltage": 2699,
+    "vvcfVoltage": 221.7
   },
   {
-    "voltage": 230,
-    "output": 2788
+    "sendVoltage": 230,
+    "receiveVoltage": 2817,
+    "vvcfVoltage": 231.5
   },
   {
-    "voltage": 240,
-    "output": 2909
+    "sendVoltage": 240,
+    "receiveVoltage": 2933,
+    "vvcfVoltage": 241.1
   },
   {
-    "voltage": 250,
-    "output": 3030
+    "sendVoltage": 250,
+    "receiveVoltage": 3051,
+    "vvcfVoltage": 250.8
   },
   {
-    "voltage": 260,
-    "output": 3152
+    "sendVoltage": 260,
+    "receiveVoltage": 3167,
+    "vvcfVoltage": 260.5
   },
   {
-    "voltage": 270,
-    "output": 3273
+    "sendVoltage": 270,
+    "receiveVoltage": 3282,
+    "vvcfVoltage": 270.2
   },
   {
-    "voltage": 280,
-    "output": 3394
+    "sendVoltage": 280,
+    "receiveVoltage": 3400,
+    "vvcfVoltage": 279.9
   },
   {
-    "voltage": 290,
-    "output": 3515
+    "sendVoltage": 290,
+    "receiveVoltage": 3517,
+    "vvcfVoltage": 289.7
   },
   {
-    "voltage": 300,
-    "output": 3636
+    "sendVoltage": 300,
+    "receiveVoltage": 3630,
+    "vvcfVoltage": 299.3
   },
   {
-    "voltage": 310,
-    "output": 3758
+    "sendVoltage": 310,
+    "receiveVoltage": 3747,
+    "vvcfVoltage": 309.1
   },
   {
-    "voltage": 320,
-    "output": 3879
+    "sendVoltage": 320,
+    "receiveVoltage": 3860,
+    "vvcfVoltage": 318.6
   },
   {
-    "voltage": 330,
-    "output": 4000
+    "sendVoltage": 330,
+    "receiveVoltage": 3975,
+    "vvcfVoltage": 328.5
   }
 ]

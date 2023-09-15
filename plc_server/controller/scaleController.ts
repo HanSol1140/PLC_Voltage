@@ -4,10 +4,12 @@ import * as ScaleModel from '../model/scaleModel.js';
 
 export const setScale = (req:Request, res:Response) => {
     try {
-        const scale = req.query.scale;
+        const inputScale = req.query.inputScale;
+        const outputScale = req.query.outputScale;
+
   
-        if (scale) {
-            ScaleModel.setScaleData(Number(scale));
+        if (inputScale && outputScale) {
+            ScaleModel.setScaleData(Number(inputScale), Number(outputScale));
             res.send("scale 설정 완료");
         } else {
             res.status(400).send("Invalid scale value");

@@ -49,14 +49,20 @@
 }
 #Settings div .scale{
     display: flex;
+    flex-wrap: wrap;
 }
-#Settings div .scale li{
+#Settings div .scale ul {
+    width: 50%;
+    /* border: 1px solid #000; */
+}
+#Settings div .scale ul li{
 
     font-size: 20px;
     width: 50%
 }
 #Settings div .scale button{
-    width: 300px;
+    display: block;
+    width: 100%;
     height: 40px;
     color: #fff;
     font-size: 20px;
@@ -71,7 +77,7 @@
 
 }
 #Settings div .input li{
-    width: 400px;
+    width: 300px;
 }
 #Settings div .input .inputvalue button{
     width: 300px;
@@ -96,8 +102,9 @@
 }
 #Settings .measure .measurename li{
 
-    width: 400px;
+    width: 300px;
     padding: 4px;
+    padding-left: 10px;
 }
 
 #Settings .measure .measurelist {
@@ -108,7 +115,7 @@
 
 #Settings .measure .measurelist li{
     display: flex;
-    width: 400px;
+    width: 300px;
     border: 1px solid #000;
     
 }

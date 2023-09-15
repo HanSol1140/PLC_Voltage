@@ -27,9 +27,10 @@ exports.getMeasureList = exports.deleteMeasure = exports.saveEditMeasure = expor
 const MeasureModel = __importStar(require("../model/measureModel.js"));
 const setMeasure = (req, res) => {
     try {
-        const voltage = Number(req.query.voltage);
-        const output = Number(req.query.output);
-        MeasureModel.setMeasureData({ voltage, output });
+        const sendVoltage = Number(req.query.sendVoltage);
+        const receiveVoltage = Number(req.query.receiveVoltage);
+        const vvcfVoltage = Number(req.query.vvcfVoltage);
+        MeasureModel.setMeasureData({ sendVoltage, receiveVoltage, vvcfVoltage });
         res.send("측정값 저장 완료");
     }
     catch (error) {
@@ -51,11 +52,12 @@ const readMeasureList = (req, res) => {
 exports.readMeasureList = readMeasureList;
 const saveEditMeasure = (req, res) => {
     try {
-        const oldVoltage = Number(req.query.oldVoltage);
-        const voltage = Number(req.query.voltage);
-        const output = Number(req.query.output);
-        MeasureModel.editMeasureData(oldVoltage, { voltage, output });
-        res.send("수정 완료");
+        const oldSendVoltage = Number(req.query.oldSendVoltage);
+        const receiveVoltage = Number(req.query.receiveVoltage);
+        const sendVoltage = Number(req.query.sendVoltage);
+        const vvcfVoltage = Number(req.query.vvcfVoltage);
+        const data = MeasureModel.editMeasureData(oldSendVoltage, sendVoltage, receiveVoltage, vvcfVoltage);
+        res.send(data);
     }
     catch (error) {
         console.error("error", error);
@@ -65,9 +67,8 @@ const saveEditMeasure = (req, res) => {
 exports.saveEditMeasure = saveEditMeasure;
 const deleteMeasure = (req, res) => {
     try {
-        const voltage = Number(req.query.voltage);
-        const output = Number(req.query.output);
-        MeasureModel.deleteMeasureData(voltage, output);
+        const sendVoltage = Number(req.query.sendVoltage);
+        MeasureModel.deleteMeasureData(sendVoltage);
         res.send("삭제 완료");
     }
     catch (error) {

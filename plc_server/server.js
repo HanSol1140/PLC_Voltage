@@ -59,11 +59,11 @@ app.use(express_1.default.static('build'));
 app.get('/', (req, res) => {
     res.redirect('/index.html');
 });
-// 라우터 사용 
+// 라우터 분리
 app.use('/', ipRoutes_1.default);
 app.use('/', scaleRoutes_1.default);
 app.use('/', measureRoutes_1.default);
-// SPA기 때문에 모든 파일의 경로를 index.html로 라우팅해줘야합니다.
+// 모든경로 index.html로 라우팅(SPA)
 app.get('*', (req, res) => {
     res.sendFile(path_1.default.join(__dirname, 'build', 'index.html'));
 });
@@ -71,56 +71,64 @@ app.get('*', (req, res) => {
 const plcIP = IPController.getIP().plcIP;
 // console.log("PLC의 IP : " + plcIP);
 // SetScale.json 메모리에 로드
-var scale = ScaleController.getScale().scale;
+var inputScale = ScaleController.getScale().inputScale;
+var outputScale = ScaleController.getScale().outputScale;
 // console.log("스케일 : " + scale);
 // SetMeasure.json 메모리에 로드
 var measureData = MeasureController.getMeasureList();
+console.log(measureData);
 // console.log("측정값중 제일 낮은 전압 : " + measureData[0].voltage);
-// 1120 => 910에서 읽어서 넣는 값
 // ====================================================================================================
 // PLC 통신 설정
+// 5초마다 접속시도, 5번까지 시도함
 PLC.connect(plcIP, 502);
 let previousVoltage = 0;
 setInterval(() => __awaiter(void 0, void 0, void 0, function* () {
-    var inputVoltage = yield PLC.readVoltage(plcIP, 502); // 910번을 읽음
-    var inputVoltage2 = yield PLC.readVoltage1120(plcIP, 502, 620); // 1120 읽음
-    console.log(inputVoltage2);
+    var inputVoltage = yield PLC.readVoltage(910); // 910번을 읽음
     console.log("inputVoltage : " + inputVoltage + " // previousVoltage : " + previousVoltage);
     if (inputVoltage !== undefined && inputVoltage !== previousVoltage) {
         previousVoltage = inputVoltage;
-        // PLC.writeVoltage(interpolate(inputVoltage)); // 1000번에 값 넣기
-        PLC.writeVoltage(732); // 1000번에 값 넣기
-        // console.log(interpolate(inputVoltage));
+        dataChange(inputVoltage);
     }
 }), 1000);
+// ====================================================================================================
+// ====================================================================================================
 // 입력값 반환하기
-function interpolate(inputValue) {
-    if (inputValue < measureData[0].voltage || inputValue > measureData[measureData.length - 1].voltage) {
-        console.log("입력한 값의 범위를 벗어났습니다.");
-        return -1;
-    }
-    // 첫 번째 값인 경우
-    if (inputValue == measureData[0].voltage) {
-        const result = measureData[0].output;
-        return Math.round(result);
-    }
-    // 마지막 값보다 큰 경우
-    if (inputValue == measureData[measureData.length - 1].voltage) {
-        const result = measureData[measureData.length - 1].output;
-        return Math.round(result);
-    }
-    for (let i = 0; i < measureData.length - 1; i++) {
-        if (inputValue >= measureData[i].voltage && inputValue < measureData[i + 1].voltage) {
-            const x1 = measureData[i].voltage;
-            const y1 = measureData[i].output;
-            const x2 = measureData[i + 1].voltage;
-            const y2 = measureData[i + 1].output;
-            // 선형 보간법
-            const result = (inputValue * scale) + (x2 - x1) * scale;
-            // 소수점 둘째자리까지 반환
-            return Math.round(result);
+function dataChange(inputValue) {
+    return __awaiter(this, void 0, void 0, function* () {
+        if (inputValue < measureData[0].sendVoltage || inputValue > measureData[measureData.length - 1].sendVoltage) {
+            console.log("설정된 값의 범위를 벗어났습니다.");
+            return -1;
         }
-    }
-    // inputValue가 데이터의 범위 밖에 있는 경우 예외 처리
-    return -1;
+        for (let i = 0; i < measureData.length - 1; i++) {
+            if (inputValue >= measureData[i].sendVoltage && inputValue < measureData[i + 1].sendVoltage) {
+                const prevVoltage = measureData[i].sendVoltage;
+                const nextVoltage = measureData[i + 1].sendVoltage;
+                const prevReceiveVoltage = measureData[i].receiveVoltage;
+                const nextReceiveVoltage = measureData[i + 1].receiveVoltage;
+                const prevVVCFVoltage = measureData[i].vvcfVoltage;
+                const nextVVCFVoltage = measureData[i + 1].vvcfVoltage;
+                // 전송값 만들어서 D1000에 쓰기
+                let VVCFVoltage = prevVVCFVoltage;
+                // if(inputValue - prevVoltage > 0){
+                for (var j = 0; j < inputValue - prevVoltage; j++) {
+                    VVCFVoltage = VVCFVoltage + (nextVVCFVoltage - prevVVCFVoltage) / (nextVoltage - prevVoltage);
+                }
+                // }
+                let multiple = (inputValue * inputScale) / VVCFVoltage;
+                const D1000 = Math.round(inputValue * multiple);
+                PLC.writeVoltage(1000, D1000);
+                console.log("D1000에 입력" + D1000);
+                // 돌아오는 값 보정해서 D1500에 쓰기
+                var onePoint = (nextReceiveVoltage - prevReceiveVoltage) / (nextVoltage - prevVoltage);
+                // 현재 넣은 값의 반환값
+                var intputReceiveVoltage = prevReceiveVoltage + ((inputValue - prevVoltage) * onePoint);
+                var convertScale = intputReceiveVoltage / inputScale;
+                var calibration = VVCFVoltage / convertScale;
+                const D1500 = Math.round((calibration * convertScale) * 10);
+                PLC.writeVoltage(1500, D1500);
+                console.log("D1500에 입력" + D1500);
+            }
+        }
+    });
 }

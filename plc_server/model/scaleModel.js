@@ -6,8 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getScaleData = exports.setScaleData = void 0;
 const fs_1 = __importDefault(require("fs"));
 const filePath = 'SetScale.json';
-const setScaleData = (scaleValue) => {
-    const data = { scale: scaleValue };
+const setScaleData = (inputScale, outputScale) => {
+    const data = {
+        inputScale: inputScale,
+        outputScale: outputScale
+    };
     fs_1.default.writeFileSync(filePath, JSON.stringify(data, null, 2));
 };
 exports.setScaleData = setScaleData;

@@ -9,20 +9,25 @@ function Settings() {
     const [readOutput, setReadOutput] = useState([]);
 
     type MeasureData = {
-        voltage: number,
-        output: number,
-        oldVoltage?: number,
+        oldSendVoltage? :number,
+        sendVoltage: number,
+        receiveVoltage: number,
+        vvcfVoltage: number,
     }
     const [readMeasureList, setReadMeasureList] = useState<MeasureData[]>([]);
 
     const [inputText, setInputText] = useState({
         readPLCIP: '',
         plcIP: '',
-        maxVoltage: '',
-        maxOutput: '',
-        voltage: '',
-        output: '',
-        scale: 0,
+        inputScaleVoltage: '',
+        inputScaleOutput: '',
+        outputScaleVoltage: '',
+        outputScaleOutput: '',
+        sendVoltage: '',
+        vvcfVoltage: '',
+        receiveVoltage: '',
+        inputScale: 0,
+        outputScale: 0
     });
     // IP값 가져오기
     async function readPLCIP() {
@@ -47,7 +52,9 @@ function Settings() {
                 // console.log(response.data.scale);
                 setInputText(prevState => ({
                     ...prevState,
-                    scale: response.data.scale
+                    inputScale: response.data.inputScale,
+                    outputScale: response.data.outputScale,
+                    
                 }));
             }
         } catch (error) {
@@ -106,21 +113,25 @@ function Settings() {
 
     // 스케일 값 저장
     async function setScale() {
-        if (!inputText.maxVoltage || !inputText.maxOutput) {
+        if (!inputText.inputScaleVoltage || !inputText.inputScaleOutput || !inputText.outputScaleVoltage || !inputText.outputScaleVoltage) {
             alert("비어있는 값이 있습니다.");
             return
         }
-        var scale = parseFloat(inputText.maxOutput) / parseFloat(inputText.maxVoltage);
-
+        const inputScale = parseFloat(inputText.inputScaleOutput) / parseFloat(inputText.inputScaleVoltage);
+        const outputScale = parseFloat(inputText.outputScaleOutput) / parseFloat(inputText.outputScaleVoltage);
+        console.log(inputScale);
+        console.log(outputScale);
         setInputText(prevState => ({
             ...prevState,
-            scale: scale
+            inputScale: inputScale,
+            outputScale: outputScale
         }));
 
         try {
             const response = await axios.get(`http://localhost:8888/api/setscale`, {
                 params: {
-                    scale: scale
+                    inputScale: inputScale,
+                    outputScale: outputScale
                 }
             });
             if (response.status === 200) {
@@ -134,7 +145,7 @@ function Settings() {
 
     // 측정값 추가하기
     async function setMeasure() {
-        if (!inputText.voltage || !inputText.output) {
+        if (!inputText.sendVoltage || !inputText.vvcfVoltage || !inputText.receiveVoltage) {
             alert("비어있는 값이 있습니다.");
             return;
         }
@@ -142,8 +153,9 @@ function Settings() {
 
             const response = await axios.get(`http://localhost:8888/api/setmeasure`, {
                 params: {
-                    voltage: inputText.voltage,
-                    output: inputText.output
+                    sendVoltage: inputText.sendVoltage,
+                    receiveVoltage: inputText.receiveVoltage,
+                    vvcfVoltage: inputText.vvcfVoltage,
                 }
             });
             if (response.status === 200) {
@@ -160,12 +172,11 @@ function Settings() {
     }
 
     // 측정값 삭제
-    async function deleteMeasure(voltage: number, output: number) {
+    async function deleteMeasure(sendVoltage: number) {
         try {
             const response = await axios.get(`http://localhost:8888/api/deletemeasure`, {
                 params: {
-                    voltage,
-                    output
+                    sendVoltage,
                 }
             });
             if (response.status === 200) {
@@ -180,9 +191,9 @@ function Settings() {
 
     // 수정
     const [editInputText, setEditInputText] = useState<MeasureData>({
-        voltage: 0,
-        output: 0,
-        oldVoltage: 0
+        sendVoltage: 0,
+        receiveVoltage: 0,
+        vvcfVoltage: 0,
     });
 
     const [editingIndex, setEditingIndex] = useState<number | null>(null);
@@ -196,26 +207,34 @@ function Settings() {
         // console.log(e.target.value);
     }, []);
 
-    const startEditMeasure = (index: number, voltage: number, output: number) => {
+    const startEditMeasure = (index: number, sendVoltage: number, receiveVoltage: number, vvcfVoltage:number) => {
         setEditInputText({
-            voltage,
-            output,
-            oldVoltage: voltage // 현재 전압 값을 oldVoltage에 저장
+            sendVoltage,
+            receiveVoltage,
+            vvcfVoltage,
+            oldSendVoltage: sendVoltage,
         });
         setEditingIndex(index);
     };
 
     const saveEditMeasure = useCallback(async (index: number) => {
         try {
+            console.log(editInputText.sendVoltage);
+            console.log(editInputText.receiveVoltage);
+            console.log(editInputText.vvcfVoltage);
             const response = await axios.get(`http://localhost:8888/api/saveeditmeasure`, {
                 params: {
-                    oldVoltage: editInputText.oldVoltage,
-                    voltage: editInputText.voltage,
-                    output: editInputText.output
+                    oldSendVoltage: editInputText.oldSendVoltage,
+                    sendVoltage: editInputText.sendVoltage,
+                    receiveVoltage: editInputText.receiveVoltage,
+                    vvcfVoltage: editInputText.vvcfVoltage,
                 }
             });
             if (response.status === 200) {
-                // alert("수정된 전압 : " + response.data[index].voltage + "\n" + "수정된 출력 : " + response.data[index].output);
+                alert("수정된 전압 : " + response.data[index].sendVoltage + "\n"
+                    + "수정된 수신값 : " + response.data[index].receiveVoltage + "\n"
+                    + "수정된 V.V.C.F 측정값 : " + response.data[index].vvcfVoltage
+                );
                 readMeasure();
             }
         } catch (error:any) {
@@ -245,22 +264,31 @@ function Settings() {
                 </ul>
                 <h3>ip : {inputText.readPLCIP}</h3><br />
                 <h3>scale 얻기</h3>
-                <ul className='scale'>
-                    <li>최대 전압 <input type="number" id="maxVoltage" name="maxVoltage" placeholder='ex)330' value={inputText.maxVoltage} onChange={onChange} /></li>
-                    <li>최대 출력 <input type="number" id="maxOutput" name="maxOutput" placeholder='ex)4000' value={inputText.maxOutput} onChange={onChange} /></li>
-                    <li><button onClick={setScale}>저장</button></li>
-                </ul>
-                <h3>scale : {inputText.scale}</h3><br />
+                <div className='scale'>
+                    <ul >
+                        <li>Input 아날로그값 <input type="number" id="inputScaleOutput" name="inputScaleOutput" placeholder='ex)4000' value={inputText.inputScaleOutput} onChange={onChange} /></li>
+                        <li>Input 전압 <input type="number" id="inputScaleVoltage" name="inputScaleVoltage" placeholder='ex)330' value={inputText.inputScaleVoltage} onChange={onChange} /></li>
+                        <h3>Scale : {inputText.inputScale}</h3><br />
+                    </ul>
+                    <ul>
+                        <li>Output 아날로그값 <input type="number" id="outputScaleOutput" name="outputScaleOutput" placeholder='ex)4000' value={inputText.outputScaleOutput} onChange={onChange} /></li>
+                        <li>Output 전압 <input type="number" id="outputScaleVoltage" name="outputScaleVoltage" placeholder='ex)330' value={inputText.outputScaleVoltage} onChange={onChange} /></li>
+                        <h3>Scale : {inputText.outputScale}</h3><br />
+                    </ul>
+                    <button onClick={setScale}>저장</button>
+                </div><br/>
 
                 <ul className='input'>
                     <h3>측정 값 추가하기</h3>
                     <ul className='inputname'>
-                        <li>입력전압 </li>
-                        <li>측정값 </li>
+                        <li>입력값 </li>
+                        <li>수신값 </li>
+                        <li>V.V.C.F값 </li>
                     </ul>
                     <ul className='inputvalue'>
-                        <li><input type="number" id="voltage" name="voltage" placeholder='입력전압' onChange={onChange} /></li>
-                        <li><input type="number" id="output" name="output" placeholder='측정값' onChange={onChange} /></li>
+                        <li><input type="number" id="sendVoltage" name="sendVoltage" placeholder='ex) 60' onChange={onChange} /></li>
+                        <li><input type="number" id="receiveVoltage" name="receiveVoltage" placeholder='ex) 65.8' onChange={onChange} /></li>
+                        <li><input type="number" id="vvcfVoltage" name="vvcfVoltage" placeholder='ex) 809' onChange={onChange} /></li>
                         <li><button onClick={setMeasure}>저장</button></li>
                     </ul>
                 </ul>
@@ -270,14 +298,16 @@ function Settings() {
             <div className='measure'>
                 <h3>입력한 측정리스트</h3>
                 <ul className='measurename'>
-                    <li><h4>전압</h4></li>
-                    <li><h4>측정</h4></li>
+                    <li><h4>입력전압</h4></li>
+                    <li><h4>수신값</h4></li>
+                    <li><h4>V.V.C.F값</h4></li>
                 </ul>
                 {readMeasureList.map((item, index) => (
                     editingIndex === index ? (
                         <ul className='measurelist' key={index}>
-                            <li><input type="number" name="voltage" value={editInputText.voltage} onChange={onEditChange} onKeyDown={handleKeyPress}/></li>
-                            <li><input type="number" name="output" value={editInputText.output} onChange={onEditChange} onKeyDown={handleKeyPress}/></li>
+                            <li><input type="number" name="sendVoltage" value={editInputText.sendVoltage} onChange={onEditChange} onKeyDown={handleKeyPress}/></li>
+                            <li><input type="number" name="receiveVoltage" value={editInputText.receiveVoltage} onChange={onEditChange} onKeyDown={handleKeyPress}/></li>
+                            <li><input type="number" name="vvcfVoltage" value={editInputText.vvcfVoltage} onChange={onEditChange} onKeyDown={handleKeyPress}/></li>
                             <li>
                                 <button onClick={() => saveEditMeasure(index)}>저장</button>
                                 <button onClick={() => setEditingIndex(null)}>취소</button>
@@ -285,11 +315,12 @@ function Settings() {
                         </ul>
                     ) : (
                         <ul className='measurelist' key={index}>
-                            <li><h4>{item.voltage}</h4></li>
-                            <li><h4>{item.output}</h4></li>
+                            <li><h4>{item.sendVoltage}</h4></li>
+                            <li><h4>{item.receiveVoltage}</h4></li>
+                            <li><h4>{item.vvcfVoltage}</h4></li>
                             <li>
-                                <button onClick={() => startEditMeasure(index, item.voltage, item.output)}>수정</button>
-                                <button onClick={() => deleteMeasure(item.voltage, item.output)}>삭제</button>
+                                <button onClick={() => startEditMeasure(index, item.sendVoltage, item.receiveVoltage, item.vvcfVoltage)}>수정</button>
+                                <button onClick={() => deleteMeasure(item.sendVoltage)}>삭제</button>
                             </li>
                         </ul>
                     )

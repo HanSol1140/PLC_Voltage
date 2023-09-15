@@ -32,7 +32,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.readVoltage1120 = exports.writeVoltage = exports.readVoltage = exports.connect = void 0;
+exports.readVoltageChoice = exports.writeVoltage = exports.readVoltage = exports.connect = void 0;
 const PLCService = __importStar(require("../service/plcService"));
 const connect = (ip, port) => {
     try {
@@ -43,9 +43,9 @@ const connect = (ip, port) => {
     }
 };
 exports.connect = connect;
-const readVoltage = (ip, port) => __awaiter(void 0, void 0, void 0, function* () {
+const readVoltage = (readAddress) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        var data = yield PLCService.readData(910);
+        var data = yield PLCService.readData(readAddress);
         return data;
     }
     catch (error) {
@@ -53,12 +53,12 @@ const readVoltage = (ip, port) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.readVoltage = readVoltage;
-const writeVoltage = (inputVoltage) => {
-    PLCService.writeData(1000, inputVoltage);
+const writeVoltage = (inputAddress, inputValue) => {
+    PLCService.writeData(inputAddress, inputValue);
     return;
 };
 exports.writeVoltage = writeVoltage;
-const readVoltage1120 = (ip, port, number) => __awaiter(void 0, void 0, void 0, function* () {
+const readVoltageChoice = (number) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         var data = yield PLCService.readData(number);
         return data;
@@ -67,4 +67,4 @@ const readVoltage1120 = (ip, port, number) => __awaiter(void 0, void 0, void 0, 
         console.error('Error:', error);
     }
 });
-exports.readVoltage1120 = readVoltage1120;
+exports.readVoltageChoice = readVoltageChoice;

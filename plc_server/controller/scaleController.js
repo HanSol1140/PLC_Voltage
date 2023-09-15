@@ -27,9 +27,10 @@ exports.getScale = exports.readScale = exports.setScale = void 0;
 const ScaleModel = __importStar(require("../model/scaleModel.js"));
 const setScale = (req, res) => {
     try {
-        const scale = req.query.scale;
-        if (scale) {
-            ScaleModel.setScaleData(Number(scale));
+        const inputScale = req.query.inputScale;
+        const outputScale = req.query.outputScale;
+        if (inputScale && outputScale) {
+            ScaleModel.setScaleData(Number(inputScale), Number(outputScale));
             res.send("scale 설정 완료");
         }
         else {

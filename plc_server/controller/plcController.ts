@@ -7,19 +7,20 @@ export const connect = (ip:string, port:number) => {
         console.error('Error:', error);
     }
 }
-export const readVoltage = async (ip:string, port:number) => {
+export const readVoltage = async (readAddress:number) => {
     try {
-        var data = await PLCService.readData(910);
+        var data = await PLCService.readData(readAddress);
         return data;
     } catch (error) {
         console.error('Error:', error);
     }
 }
-export const writeVoltage = (inputVoltage:number) => {
-    PLCService.writeData(1000, inputVoltage);
+export const writeVoltage = (inputAddress:number, inputValue:number) => {
+    PLCService.writeData(inputAddress, inputValue);
     return;
 }
-export const readVoltage1120 = async (ip:string, port:number, number:number ) => {
+
+export const readVoltageChoice = async (number:number ) => {
     try {
         var data = await PLCService.readData(number);
         return data;

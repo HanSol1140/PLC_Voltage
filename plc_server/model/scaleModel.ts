@@ -1,8 +1,11 @@
 import fs from 'fs';
 const filePath = 'SetScale.json';
 
-export const setScaleData = (scaleValue: number) => {
-    const data = { scale: scaleValue };
+export const setScaleData = (inputScale: number :outputScale:number) => {
+    const data = {
+        inputScale: inputScale,
+        outputScale: outputScale
+     };
     fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
 };
 
