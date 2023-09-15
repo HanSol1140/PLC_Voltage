@@ -3,7 +3,6 @@ import Header from './components/Header';
 import Settings from './components/Settings';
 import './App.css';
 function App() {
-  var asdf:string = "12313213";
 
   return (
     <Router>

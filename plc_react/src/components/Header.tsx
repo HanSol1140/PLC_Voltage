@@ -8,7 +8,7 @@ function Header(){
         <section id='Header'>
             <ul>
                 {/* <Link to="/" className='link'><li>Main</li></Link> */}
-                <Link to="/Settings" className='link'><li>Settings</li></Link>
+                <Link to="/" className='link'><li>Settings</li></Link>
             </ul>
         </section>
     );
