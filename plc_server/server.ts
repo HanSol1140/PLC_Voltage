@@ -24,15 +24,17 @@ const server = app.listen(PORT, () => {
 });
 
 // 리액트 페이지 접속
-app.use(express.static('build'));
-app.get('/', (req, res) => {
-    res.redirect('//home/nanonix/PLC_Voltage/plc_server/build');
-});
+app.use(express.static('/home/nanonix/PLC_Voltage/plc_server/build'));
+
 
 // 라우터 분리
 app.use('/', ipRoutes);
 app.use('/', scaleRoutes);
 app.use('/', measureRoutes);
+
+// app.get('/', (req, res) => {
+//     res.redirect('/home/nanonix/PLC_Voltage/plc_server/build');
+// });
 
 // 모든경로 index.html로 라우팅(SPA)
 app.get('*', (req, res) => {
@@ -43,7 +45,7 @@ app.get('*', (req, res) => {
     });
 });
 
- 
+
 
 // SetIP.json 메모리에 로드
 const plcIP = IPController.getIP().plcIP;
