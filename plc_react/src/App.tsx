@@ -11,7 +11,7 @@ function App() {
           
           <Header/>
           <Routes>
-            <Route path="/Settings" element={<Settings/>}/>
+            <Route path="/" element={<Settings/>}/>
           </Routes>
         </div>
     </Router>

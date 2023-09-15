@@ -26,7 +26,7 @@ const server = app.listen(PORT, () => {
 // 리액트 페이지 접속
 app.use(express.static('build'));
 app.get('/', (req, res) => {
-    res.redirect('/index.html');
+    res.redirect('//home/nanonix/PLC_Voltage/plc_server/build');
 });
 
 // 라우터 분리
@@ -43,7 +43,7 @@ app.get('*', (req, res) => {
     });
 });
 
-
+ 
 
 // SetIP.json 메모리에 로드
 const plcIP = IPController.getIP().plcIP;
