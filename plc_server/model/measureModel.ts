@@ -1,7 +1,10 @@
 import fs from 'fs';
 const filePath = 'SetMeasure.json';
-
-export const setMeasureData = (data: {voltage:number, output:number}) => {
+interface MeasuerData {
+    voltage : number,
+    output : number
+}
+export const setMeasureData = (data: MeasuerData) => {
     if (!fs.existsSync(filePath)) {
         fs.writeFileSync(filePath, JSON.stringify([]));
     }
@@ -13,7 +16,7 @@ export const setMeasureData = (data: {voltage:number, output:number}) => {
 
 export const getMeasureData = () => {
     if (!fs.existsSync(filePath)) {
-        return [];
+        return null;
     }
     return JSON.parse(fs.readFileSync(filePath, 'utf8'));
 }

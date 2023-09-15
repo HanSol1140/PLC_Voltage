@@ -16,18 +16,35 @@ function Settings() {
     const [readMeasureList, setReadMeasureList] = useState<MeasureData[]>([]);
 
     const [inputText, setInputText] = useState({
+        readPLCIP: '',
+        plcIP: '',
         maxVoltage: '',
         maxOutput: '',
         voltage: '',
         output: '',
         scale: 0,
     });
+    // IP값 가져오기
+    async function readPLCIP() {
+        try {
+            let response = await axios.get('http://localhost:8888/api/readplcip');
+            if (response.status === 200) {
+                console.log(response.data);
+                setInputText(prevState => ({
+                    ...prevState,
+                    readPLCIP: response.data.plcIP
+                }));
+            }
+        } catch (error) {
+            console.log("error", error);
+        }
+    }
     // scale값 가져오기
     async function readScale() {
         try {
             let response = await axios.get('http://localhost:8888/api/readscale');
             if (response.status === 200) {
-                console.log(response.data.scale);
+                // console.log(response.data.scale);
                 setInputText(prevState => ({
                     ...prevState,
                     scale: response.data.scale
@@ -43,7 +60,7 @@ function Settings() {
             let response = await axios.get('http://localhost:8888/api/readmeasurelist');
             if (response.status === 200) {
                 setReadMeasureList(response.data);
-                // console.log(response.data);
+                console.log(response.data);
             }
         } catch (error) {
             console.log("error", error);
@@ -52,6 +69,7 @@ function Settings() {
     useEffect(() => {
         readScale();
         readMeasure();
+        readPLCIP();
     }, []);
 
 
@@ -61,8 +79,30 @@ function Settings() {
             ...prevForm,
             [name]: value
         }));
-        // console.log(e.target.value);
+        console.log(e.target.value);
     }, []);
+
+    // IP 값 저장
+    async function setPlcIP() {
+        if (!inputText.plcIP) {
+            alert("비어있는 값이 있습니다.");
+            return
+        }
+        try {
+            const response = await axios.get(`http://localhost:8888/api/setplcip`, {
+                params: {
+                    plcIP: inputText.plcIP
+                }
+            });
+            if (response.status === 200) {
+                console.log(response.data);
+                alert(response.data);
+                window.location.reload();
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     // 스케일 값 저장
     async function setScale() {
@@ -197,10 +237,17 @@ function Settings() {
     return (
         <section id='Settings'>
             <div>
+                <h3>IP 설정하기</h3>
+                <ul className='ip'>
+                    <li>IP 입력하기 <input type="text" id="plcIP" name="plcIP" placeholder='ex)192.168.1.2' value={inputText.plcIP} onChange={onChange}></input></li>
+                    <li></li>
+                    <li><button onClick={setPlcIP}>저장</button></li>
+                </ul>
+                <h3>ip : {inputText.readPLCIP}</h3><br />
                 <h3>scale 얻기</h3>
                 <ul className='scale'>
-                    <li>최대 전압 <input type="number" id="maxVoltage" name="maxVoltage" placeholder='330' value={inputText.maxVoltage} onChange={onChange} /></li>
-                    <li>최대 출력 <input type="number" id="maxOutput" name="maxOutput" placeholder='4000' value={inputText.maxOutput} onChange={onChange} /></li>
+                    <li>최대 전압 <input type="number" id="maxVoltage" name="maxVoltage" placeholder='ex)330' value={inputText.maxVoltage} onChange={onChange} /></li>
+                    <li>최대 출력 <input type="number" id="maxOutput" name="maxOutput" placeholder='ex)4000' value={inputText.maxOutput} onChange={onChange} /></li>
                     <li><button onClick={setScale}>저장</button></li>
                 </ul>
                 <h3>scale : {inputText.scale}</h3><br />

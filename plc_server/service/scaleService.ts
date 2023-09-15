@@ -2,8 +2,8 @@ import fs from 'fs';
 const filePath = 'SetScale.json';
 interface ScaleData {
     scale : number,
-
 }
+
 let scaleData: ScaleData = { scale : 0};
 
 export const loadScaleData = () => {

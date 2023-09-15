@@ -18,7 +18,7 @@ const setMeasureData = (data) => {
 exports.setMeasureData = setMeasureData;
 const getMeasureData = () => {
     if (!fs_1.default.existsSync(filePath)) {
-        return [];
+        return null;
     }
     return JSON.parse(fs_1.default.readFileSync(filePath, 'utf8'));
 };

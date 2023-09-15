@@ -6,7 +6,7 @@ export const setMeasure = (req:Request, res:Response) => {
         const voltage = Number(req.query.voltage);
         const output = Number(req.query.output);
         MeasureModel.setMeasureData({ voltage, output });
-        res.send("저장 완료");
+        res.send("측정값 저장 완료");
     } catch (error) {
         console.error('Error:', error);
         res.status(500).send("서버 오류");
@@ -46,4 +46,12 @@ export const deleteMeasure = (req:Request, res:Response) =>{
         console.log("error", error);
     }
 
+}
+export const getMeasureList = () => {
+    try {
+        const data = MeasureModel.getMeasureData();
+        return data;
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }

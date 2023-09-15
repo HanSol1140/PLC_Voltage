@@ -23,14 +23,14 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteMeasure = exports.saveEditMeasure = exports.readMeasureList = exports.setMeasure = void 0;
+exports.getMeasureList = exports.deleteMeasure = exports.saveEditMeasure = exports.readMeasureList = exports.setMeasure = void 0;
 const MeasureModel = __importStar(require("../model/measureModel.js"));
 const setMeasure = (req, res) => {
     try {
         const voltage = Number(req.query.voltage);
         const output = Number(req.query.output);
         MeasureModel.setMeasureData({ voltage, output });
-        res.send("저장 완료");
+        res.send("측정값 저장 완료");
     }
     catch (error) {
         console.error('Error:', error);
@@ -75,3 +75,13 @@ const deleteMeasure = (req, res) => {
     }
 };
 exports.deleteMeasure = deleteMeasure;
+const getMeasureList = () => {
+    try {
+        const data = MeasureModel.getMeasureData();
+        return data;
+    }
+    catch (error) {
+        console.error('Error:', error);
+    }
+};
+exports.getMeasureList = getMeasureList;

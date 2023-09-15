@@ -8,6 +8,9 @@
     width: 1200px;
     /* border: 1px solid #000; */
 }
+#Settings div li {
+    padding: 8px;
+}
 #Settings div input {
     padding: 4px;
 }
@@ -20,18 +23,35 @@
 #Settings div button:hover{
     background-color: #228833;
 }
-background-color: #33B84C;
 #Settings div ul{}
 
 #Settings div input {
     font-size: 20px;
     border-radius: 4px;
 }
+
+#Settings div .ip{
+    display: flex;
+}
+#Settings div .ip li{
+    /* border: 1px solid #000; */
+
+    font-size: 20px;
+    width: 50%
+}
+
+#Settings div .ip button{
+    width: 300px;
+    height: 40px;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+}
 #Settings div .scale{
     display: flex;
 }
 #Settings div .scale li{
-    padding: 4px;
+
     font-size: 20px;
     width: 50%
 }
@@ -51,7 +71,6 @@ background-color: #33B84C;
 
 }
 #Settings div .input li{
-    padding: 4px;
     width: 400px;
 }
 #Settings div .input .inputvalue button{
@@ -90,7 +109,6 @@ background-color: #33B84C;
 #Settings .measure .measurelist li{
     display: flex;
     width: 400px;
-    padding: 4px;
     border: 1px solid #000;
     
 }
@@ -100,7 +118,6 @@ background-color: #33B84C;
 
 #Settings .measure .measurelist li button{
     width: 150px;
-    padding: 4px;
     font-size: 20px;
     text-align: center;
 }

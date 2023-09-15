@@ -23,28 +23,25 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getScale = exports.readScale = exports.setScale = void 0;
-const ScaleModel = __importStar(require("../model/scaleModel.js"));
-const setScale = (req, res) => {
+exports.getIP = exports.readIP = exports.setIP = void 0;
+const IPModel = __importStar(require("../model/ipModel.js"));
+const setIP = (req, res) => {
     try {
-        const scale = req.query.scale;
-        if (scale) {
-            ScaleModel.setScaleData(Number(scale));
-            res.send("scale 설정 완료");
-        }
-        else {
-            res.status(400).send("Invalid scale value");
-        }
+        console.log("ip저장시도");
+        const ip = req.query.plcIP;
+        console.log(ip);
+        IPModel.setIPData(String(ip));
+        res.send("IP저장 완료");
     }
     catch (error) {
         console.error('Error:', error);
         res.status(500).send("서버 오류");
     }
 };
-exports.setScale = setScale;
-const readScale = (req, res) => {
+exports.setIP = setIP;
+const readIP = (req, res) => {
     try {
-        const data = ScaleModel.getScaleData();
+        const data = IPModel.getIP();
         res.send(data);
     }
     catch (error) {
@@ -52,14 +49,14 @@ const readScale = (req, res) => {
         res.status(500).send("서버 오류");
     }
 };
-exports.readScale = readScale;
-const getScale = () => {
+exports.readIP = readIP;
+const getIP = () => {
     try {
-        const data = ScaleModel.getScaleData();
+        const data = IPModel.getIP();
         return data;
     }
     catch (error) {
         console.error('Error:', error);
     }
 };
-exports.getScale = getScale;
+exports.getIP = getIP;
