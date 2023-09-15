@@ -37,6 +37,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
+const path_1 = __importDefault(require("path"));
 // 라우터
 const ipRoutes_1 = __importDefault(require("./routers/ipRoutes"));
 const scaleRoutes_1 = __importDefault(require("./routers/scaleRoutes"));
@@ -53,10 +54,19 @@ const PORT = 8888;
 const server = app.listen(PORT, () => {
     console.log("서버시작 : PORT " + PORT);
 });
-// 
+// 리액트 페이지 접속
+app.use(express_1.default.static('build'));
+app.get('/', (req, res) => {
+    res.redirect('/index.html');
+});
+// 라우터 사용 
 app.use('/', ipRoutes_1.default);
 app.use('/', scaleRoutes_1.default);
 app.use('/', measureRoutes_1.default);
+// SPA기 때문에 모든 파일의 경로를 index.html로 라우팅해줘야합니다.
+app.get('*', (req, res) => {
+    res.sendFile(path_1.default.join(__dirname, 'build', 'index.html'));
+});
 // SetIP.json 메모리에 로드
 const plcIP = IPController.getIP().plcIP;
 // console.log("PLC의 IP : " + plcIP);

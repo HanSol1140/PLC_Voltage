@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
 // 라우터
 import ipRoutes from './routers/ipRoutes';
 import scaleRoutes from './routers/scaleRoutes';
@@ -22,10 +23,23 @@ const server = app.listen(PORT, () => {
     console.log("서버시작 : PORT " + PORT);
 });
 
-// 
+// 리액트 페이지 접속
+app.use(express.static('build'));
+app.get('/', (req, res) => {
+    res.redirect('/index.html');
+});
+
+// 라우터 사용 
 app.use('/', ipRoutes);
 app.use('/', scaleRoutes);
 app.use('/', measureRoutes);
+
+// SPA기 때문에 모든 파일의 경로를 index.html로 라우팅해줘야합니다.
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
+
 
 // SetIP.json 메모리에 로드
 const plcIP = IPController.getIP().plcIP;
