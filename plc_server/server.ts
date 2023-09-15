@@ -2,15 +2,15 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 // 라우터
-import ipRoutes from '/home/nanonix/PLC_Voltage/plc_server/routers/ipRoutes';
-import scaleRoutes from '/home/nanonix/PLC_Voltage/plc_server/routers/scaleRoutes';
-import measureRoutes from '/home/nanonix/PLC_Voltage/plc_server/routers/measureRoutes';
+import ipRoutes from './routers/ipRoutes';
+import scaleRoutes from './routers/scaleRoutes';
+import measureRoutes from './routers/measureRoutes';
 
 // 컨트롤러 호출
-import * as IPController from '/home/nanonix/PLC_Voltage/plc_server/controller/ipController';
-import * as MeasureController from '/home/nanonix/PLC_Voltage/plc_server/controller/measureController';
-import * as ScaleController from '/home/nanonix/PLC_Voltage/plc_server/controller/scaleController';
-import * as PLC from '/home/nanonix/PLC_Voltage/plc_server/controller/plcController';
+import * as IPController from './controller/ipController';
+import * as MeasureController from './controller/measureController';
+import * as ScaleController from './controller/scaleController';
+import * as PLC from './controller/plcController';
 
 const app = express();
 app.use(express.json());
@@ -24,22 +24,13 @@ const server = app.listen(PORT, () => {
 });
 
 // 리액트 페이지 접속
-app.use(express.static('/home/nanonix/PLC_Voltage/plc_server/build'));
-
-
 // 라우터 분리
 app.use('/', ipRoutes);
 app.use('/', scaleRoutes);
 app.use('/', measureRoutes);
 
-// 모든경로 index.html로 라우팅(SPA)
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '/home/nanonix/PLC_Voltage/plc_server/build/index.html'), function(err){
-        if(err){
-            res.status(500).send(err);
-        }
-    });
-});
+// 리액트 페이지 staic 설정
+app.use(express.static('build'));
 
 // SetIP.json 메모리에 로드
 const plcIP = IPController.getIP().plcIP;
@@ -59,7 +50,7 @@ console.log(measureData);
 // PLC 통신 설정
 
 // 5초마다 접속시도, 5번까지 시도함
-// PLC.connect(plcIP, 502);
+PLC.connect(plcIP, 502);
 
 let previousVoltage:any = 0;
 
@@ -125,3 +116,9 @@ async function dataChange (inputValue: number) {
     }
 }
 
+
+
+// 모든경로 index.html로 라우팅(SPA)
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
