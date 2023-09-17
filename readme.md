@@ -1,4 +1,45 @@
-LS산전 XGB시리즈 PLC
+# 1. 라즈베리파이에 라즈비안 운영체제 설치
+
+라즈베리파이와 SD카드, SD카드 리더기를 준비합니다.
+
+<a href="https://www.raspberrypi.com/software/">라즈비안 이미저 다운로드</a>
+
+![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/ea83d3af-177a-4a4b-9e2f-bb45b7276d37)
+
+SD카드 리더기에 SD카드를 꽂고, PC에 연결하여 자신의 운영체제에 맞는 라즈비안 이미저를 설치합니다.
+
+설치과정 생략
+
+#. 2. 설치후 라즈베리파이에 한글설정
+
+한글 설정을 해주지 않으면 영어는 사용할 수 있지만
+
+특수문자 키배열이 달라서 각종 설치에 문제가 있으므로 가장 먼저 한글을 설치합니다.
+
+먼저 터미널을 실행 후
+
+  sudo apt-get update
+  sudo raspi-config
+  5 Localisation Options" > L1 Locale
+  ko_KR.UTF-8 UTF-8을 선택하고, Ok를 누릅니다.
+  그 다음 =설정할 기본 로캘로 ko_KR.UTF-8을 선택하고 다시 Ok를 누릅니다.
+  raspi-config를 종료
+
+만약, 기본 로캘 설정에 ko_KR.UTF-8이 없다면
+  터미널을 실행
+  locale -a
+  
+  ko_KR.UTF-8이 있는지 확인하고 만약 없다면
+  
+  sudo nano /etc/locale.gen
+  입력하여 편집기에서 ko_KR.UTF-8이 주석처리 되어있나 확인하고 주석처리를 제거(앞 부분에 #, 공백 제거)
+  (Ctrl + S)로 저장 후 (Ctrl + X)로 편집기 종료
+  
+  sudo locale-gen
+
+  sudo update-locale LANG=ko_KR.UTF-8
+
+# 설치방법 LS산전 XGB시리즈 PLC
 
 P01 / P02같은 address를 주면
 
