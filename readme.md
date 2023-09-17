@@ -1,4 +1,4 @@
-# 1. 라즈베리파이에 라즈비안 운영체제 설치
+![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/39258961-dca5-49af-b9c2-162da5e6436b)# 1. 라즈베리파이에 라즈비안 운영체제 설치
 
 라즈베리파이와 SD카드, SD카드 리더기를 준비합니다.
 
@@ -10,7 +10,7 @@ SD카드 리더기에 SD카드를 꽂고, PC에 연결하여 자신의 운영체
 
 설치과정 생략
 
-#. 2. 설치후 라즈베리파이에 한글설정
+##. 2. 설치후 라즈베리파이에 한글설정
 
 한글 설정을 해주지 않으면 영어는 사용할 수 있지만
 
@@ -64,8 +64,10 @@ SD카드 리더기에 SD카드를 꽂고, PC에 연결하여 자신의 운영체
 # 3. 프로그램 다운로드
   https://github.com/HanSol1140/PLC_Voltage
   해당 경로로 이동
-  
-  ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/34e0ea5d-83b5-4b7a-b699-368b478ffd3b)
+
+  ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/b1c5aa36-5653-4ba8-ad90-8555e2b8fd8e)
+
+  해당 파일을 다운로드 후
   
 
 # 설치방법 LS산전 XGB시리즈 PLC
