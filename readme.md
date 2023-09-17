@@ -17,27 +17,56 @@ SD카드 리더기에 SD카드를 꽂고, PC에 연결하여 자신의 운영체
 특수문자 키배열이 달라서 각종 설치에 문제가 있으므로 가장 먼저 한글을 설치합니다.
 
 먼저 터미널을 실행 후
-
-  >sudo apt-get update
+```
+  sudo apt-get update
   sudo raspi-config
   5 Localisation Options" > L1 Locale
   ko_KR.UTF-8 UTF-8을 선택하고, Ok를 누릅니다.
   그 다음 =설정할 기본 로캘로 ko_KR.UTF-8을 선택하고 다시 Ok를 누릅니다.
   raspi-config를 종료
+```
 
 만약, 기본 로캘 설정에 ko_KR.UTF-8이 없다면
-  터미널을 실행
+```
   locale -a
-  
   ko_KR.UTF-8이 있는지 확인하고 만약 없다면
-  
   sudo nano /etc/locale.gen
   입력하여 편집기에서 ko_KR.UTF-8이 주석처리 되어있나 확인하고 주석처리를 제거(앞 부분에 #, 공백 제거)
   (Ctrl + S)로 저장 후 (Ctrl + X)로 편집기 종료
-  
   sudo locale-gen
-
   sudo update-locale LANG=ko_KR.UTF-8
+```
+
+이후 나머지 설치
+```
+    글꼴 설치 -> 설치후 설정을 해줘야 네모가 출력되지 않음
+    sudo apt-get install -y fonts-nanum*
+
+    한글 입력기 설치
+    sudo apt-get install -y ibus ibus-hangul
+    ibus를 기본 입력방법으로 설정
+    im-config -n ibus
+    입력기에 한글 추가하기
+    터미널에
+    ibus-setup
+    => input Method => Add => Korean => hangul
+    
+    원래 있던 언어를 제거합니다. (한글만 설치해도 영어사용가능)
+    sudo reboot
+
+
+    ※ 이때 ibus-setup일때 오류가 뜨면서 안켜질 수 있는데
+    1. 재부팅후 다시 실행
+    2. 그래도 안된다면 sudo ibus-setup 후 오류메세지가 출력될텐데
+       무시하고 Hangul설정후 재부팅후 다시 ibus-setup으로 접속해서 한글이 추가되었는지 확인해보세요.
+```
+
+# 3. 프로그램 다운로드
+  https://github.com/HanSol1140/PLC_Voltage
+  해당 경로로 이동
+  
+  ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/34e0ea5d-83b5-4b7a-b699-368b478ffd3b)
+  
 
 # 설치방법 LS산전 XGB시리즈 PLC
 
