@@ -19,11 +19,11 @@ SD카드 리더기에 SD카드를 꽂고, PC에 연결하여 자신의 운영체
 먼저 터미널을 실행 후
 
   >sudo apt-get update
-  >sudo raspi-config
-  >5 Localisation Options" > L1 Locale
-  >ko_KR.UTF-8 UTF-8을 선택하고, Ok를 누릅니다.
-  >그 다음 =설정할 기본 로캘로 ko_KR.UTF-8을 선택하고 다시 Ok를 누릅니다.
-  >raspi-config를 종료
+  sudo raspi-config
+  5 Localisation Options" > L1 Locale
+  ko_KR.UTF-8 UTF-8을 선택하고, Ok를 누릅니다.
+  그 다음 =설정할 기본 로캘로 ko_KR.UTF-8을 선택하고 다시 Ok를 누릅니다.
+  raspi-config를 종료
 
 만약, 기본 로캘 설정에 ko_KR.UTF-8이 없다면
   터미널을 실행
