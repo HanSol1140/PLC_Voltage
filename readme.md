@@ -10,11 +10,55 @@
   
 ## PLC에 설정된 측정값 변경 방법
   REAL VNC 설치
+  
   <a href="https://www.realvnc.com/en/connect/download/viewer/"> REAL VNC 다운로드 페이지</a>
   
   ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/dc3eceba-efd1-4f43-9c74-3106a8ec28a4)
   해당 페이지로 이동 후 다운로드해서 REAL VNC 설치
 
+  ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/aaffb5b7-7e5f-4e34-a2e4-4e3bfe16d2d1)
+  사전에 설정된 이더넷 IP를 입력하여 접속
+
+  ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/a3e69ae3-5eb0-4955-a92e-a79718698cda)
+
+  useername : nanonix
+  password : nanonix
+
+  ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/2579a15e-329e-4744-b228-96d5315ab9f9)  
+  원격 접속이 된것을 확인할 수 있습니다.
+
+  터미널을 실행후
+  ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/78570898-65a7-4806-bfe2-7f6d003c05be)
+  ```
+    cd PLC_Voltage
+    cd plc_react
+    npm start
+  ```
+  해당 명령어를 실행 후 기다리면 브라우저가 실행됩니다.
+
+  ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/4d24d394-2773-4fab-95bb-ba0b7386094d)
+
+  여기서 원하는 값으로 변경 후 라즈베리파이를 재부팅해주세요.
+
+  ### IP 설정하기
+  ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/a498b8e5-fec4-4428-a189-5d1daef9d863)
+  사전에 설정된 PLC의 IP주소입니다.
+
+  ### scale 얻기
+  ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/547c5bc8-632f-4ad8-98b9-ceab942e060f)
+  전압 계산을위한 scale 설정값을 입력해주세요.
+  
+  ### 측정값 입력
+  ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/4a41b497-ef36-4c64-b4c0-605aeb2cc4f0)
+  기준이 될 측정값을 입력해주세요.
+  수신값은 PLC에서 보이는 아날로그 값입니다.
+  ex) 입력 전압이 60V일때 PLC의 아날로그값 : 809 / V.V.C.F에서 출력된 값 : 65.8V
+
+
+
+
+
+<br><br>
 # 설치 과정
 ## 1. 라즈베리파이에 라즈비안 운영체제 설치
 
