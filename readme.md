@@ -35,14 +35,8 @@
   
   원격 접속이 된것을 확인할 수 있습니다.
 
-  터미널을 실행후
-  ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/78570898-65a7-4806-bfe2-7f6d003c05be)
-  ```
-    cd PLC_Voltage
-    cd plc_react
-    npm start
-  ```
-  해당 명령어를 실행 후 기다리면 브라우저가 실행됩니다.
+  라즈베리파이의 브라우저를 실행 후
+  localhost:8888으로 접속하면 설정페이지에 접속됩니다.
 
   ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/4d24d394-2773-4fab-95bb-ba0b7386094d)
 
