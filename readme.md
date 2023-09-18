@@ -22,6 +22,8 @@
 
   ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/aaffb5b7-7e5f-4e34-a2e4-4e3bfe16d2d1)
   
+  PC와 라즈베리파이를 LAN선으로 연결 후
+  
   사전에 설정된 이더넷 IP를 입력하여 접속
 
   ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/a3e69ae3-5eb0-4955-a92e-a79718698cda)
