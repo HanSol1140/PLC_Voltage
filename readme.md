@@ -24,7 +24,9 @@
   ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/a3e69ae3-5eb0-4955-a92e-a79718698cda)
 
   useername : nanonix
+  
   password : nanonix
+  <br>
 
   ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/2579a15e-329e-4744-b228-96d5315ab9f9)  
   
