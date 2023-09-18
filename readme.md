@@ -1,10 +1,21 @@
 # 사용방법
 
-##  1. 사용방법
+##  기본적인 사용방법
+  라즈베리파이와 PLC장치를 LAN선으로 연결 후 라즈베리파이에 전원을 넣으면 서버가 자동으로 실행
+  D910에 입력된 전압값을 읽어서
+  출력의 D1000으로 전압이 아날로그로 변환된 입력값을 넣습니다.
   
+  D1500으로 아날로그값을 전압으로 변환하여 값을 넣습니다.
+  ※ D1500의 값을 받을때는 (D1500의값)/10 으로 받아야 합니다. (PLC에서 소수점 표기가 안되어서 10배로 넣은상태)
+  
+## PLC에 설정된 측정값 변경 방법
+  REAL VNC 설치
+  <a href="https://www.realvnc.com/en/connect/download/viewer/"> REAL VNC 다운로드 페이지</a>
+  
+  ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/dc3eceba-efd1-4f43-9c74-3106a8ec28a4)
+  해당 페이지로 이동 후 다운로드해서 REAL VNC 설치
 
-
-# 설치 방법
+# 설치 과정
 ## 1. 라즈베리파이에 라즈비안 운영체제 설치
 
 라즈베리파이와 SD카드, SD카드 리더기를 준비합니다.
@@ -15,7 +26,7 @@
 
 SD카드 리더기에 SD카드를 꽂고, PC에 연결하여 자신의 운영체제에 맞는 라즈비안 이미저를 설치합니다.
 
-설치과정 생략
+이후 운영체제 설치과정 생략
 
 ##. 2. 설치후 라즈베리파이에 한글설정
 
@@ -78,7 +89,9 @@ SD카드 리더기에 SD카드를 꽂고, PC에 연결하여 자신의 운영체
 
 node와 npm이 구버전임을 확인할 수 있습니다.
 
-nodejs 다운로드 페이지 Linux Binaries (ARM) - ARM7 다운로드 후 home/hostname 경로로 이동시키기
+nodejs 홈페이지로 이동 후
+
+다운로드 페이지 Linux Binaries (ARM) - ARM8 다운로드 후 home/hostname 경로로 이동시키기
 
 node-v18.16.1-linux-armv7l.tar.xz 압축해제
 
