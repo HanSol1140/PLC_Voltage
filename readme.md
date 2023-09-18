@@ -122,6 +122,8 @@ node-v18.16.1-linux-armv7l.tar.xz 압축해제
 
   서버가 실행됬다면 브라우저를 실행해 localhost:8888로 접속해봅니다.
 
+  ![localhost_3000_](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/d6aec2ba-3286-4174-857c-6cc1520bdba5)
+
   
 
 # 설치방법 LS산전 XGB시리즈 PLC
