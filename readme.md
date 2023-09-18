@@ -1,5 +1,9 @@
 # 사용방법
 
+##  1. 사용방법
+  
+
+
 # 설치 방법
 ## 1. 라즈베리파이에 라즈비안 운영체제 설치
 
@@ -80,7 +84,7 @@ node-v18.16.1-linux-armv7l.tar.xz 압축해제
 
 터미널을 실행합니다.
 ```
-  echo 'export PATH=$HOME/node-v18.16.1-linux-armv7l/bin:$PATH' > ~/.bashrc
+  echo 'export PATH=$HOME/node-v18.17.1-linux-armv64/bin:$PATH' > ~/.bashrc
   source ~/.bashrc
 ```
 버전을 확입합니다.
@@ -119,12 +123,40 @@ node-v18.16.1-linux-armv7l.tar.xz 압축해제
 
 
   ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/af7fa0a2-d4af-4d8c-88b7-0368e733d189)
-
+  <br>
   서버가 실행됬다면 브라우저를 실행해 localhost:8888로 접속해봅니다.
-
-  ![localhost_3000_](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/d6aec2ba-3286-4174-857c-6cc1520bdba5)
-
+  <br>
   
+  ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/9aa6c40b-a2cd-477f-92ed-92bfbacc5f4b)
+
+  실행이 확인되고, IP, scale, 측정값 추가/수정/삭제 기능이 확인됬다면, 이제 pm2를 이용해 서버를 자동실행 해줍니다.
+
+## 5. pm2를 이용하여 서버 자동실행하기
+
+pm2 설치
+터미널에서 실행
+```
+  sudo npm install -g pm2
+  npm audit fix
+
+  만약 오류가 출력된다면
+  $HOME/node-v18.17.1-linux-armv64/bin/npm install -g pm2
+  해당 명령어로 pm2를 설치해보세요.  
+```
+pm2 설정
+터미널에서 실행
+```
+  pm2 start /home/nanonix/PLC_Voltage/plc_server/server.js
+  pm2 startup
+  위의 명령어를 입력하면
+  sudo env PATH=$PATH:/home/nanonix/node-v18.17.1-linux-armv64/bin /sur/local/lib/node_modules/pm2/bin startup systemd -u nanonix --hp /home/nanonix
+  이와 같은 형태의 코드가 출력됩니다.
+  해당 코드를 복사하여 터미널에 입력하고
+  pm2 save
+  이제 재부팅을 하면 자동으로 서버가 실행됩니다.
+```
+
+설치 후 
 
 # 설치방법 LS산전 XGB시리즈 PLC
 
