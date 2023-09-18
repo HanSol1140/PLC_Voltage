@@ -156,7 +156,45 @@ pm2 설정
   이제 재부팅을 하면 자동으로 서버가 실행됩니다.
 ```
 
-설치 후 
+## 6. PLC연결을 위한 이더넷 설정
+LS산전 홈페이지에서 XG5000을 다운로드 받아서 설치
+
+해당 프로그램은 윈도우에서만 사용이 가능하므로 라즈베리파이가 아닌 PC에서 설정해야합니다.
+
+![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/68378fb2-78a8-4610-9a27-390f69e1fd41)
+
+PLC의 IP를 설정을 해준뒤 PLC에 설정 업로드 / 리셋
+
+라즈베리파이의 터미널에서
+```
+sudo nano /etc/dhcpcd.conf
+
+  제일 하단으로 이동후 
+  interface eth0
+  static ip_address=192.168.1.20/24       => 비어있는 IP 아무거나 사용하시면 됩니다.
+  static routers=192.168.1.1
+  static domain_name_servers=192.168.1.1
+  해당 코드 추가
+
+  Ctrl + S => Ctrl + X
+
+  sudo service dhcpcd restart
+  
+  sudo reboot
+  
+  ip a
+  
+```
+eth0에 192:168.1.20이 나오면 성공
+
+이제 서버를 실행시킨뒤 PLC와 연결하면 됩니다.
+
+
+
+
+
+
+<!--
 
 # 설치방법 LS산전 XGB시리즈 PLC
 
@@ -165,16 +203,15 @@ P01 / P02같은 address를 주면
 해당 좌표에서 값을 읽어서 읽거나 쓰면 됨,
 
 
-<!-- PLC와 라즈베리파이 연결후 PLC IP찾기  -->
+
 XBM-DN32H
 XBF-AH04A
-
 
 <설정방법>
 <PC>
 LAN선으로 PLC와 노트북을 연결
 시작 - 네트워크 연결 보기 - 이더넷 - 속성 인터넷프로토콜 버전4(TCP/IPv4)
-다음 ip 주소사용 => 192.168.1.15(자유인데 PLC와 앞 IP주소가 같아야함, 192.168.x.x)
+다음 ip 주소사용 => 192.168.1.15(자유)
 
 
 LS산전에서 XG5000 프로그램 다운로드
@@ -188,27 +225,6 @@ LAN선으로 연결 후 프로젝트 - PLC로부터열기 - 접속옵션설정 -
 상단 메뉴 온라인 - 쓰기 / 온라인 - 리셋
 
 이후 server.js에서 서버를 접속하면 접속됨
-
-<라즈베리파이>
-sudo nano /etc/dhcpcd.conf
-
-제일 밑에
-interface eth0
-static ip_address=192.168.1.20/24
-static routers=192.168.1.1
-static domain_name_servers=192.168.1.1
-
-Ctrl + S => Ctrl + X
-
-sudo service dhcpcd restart
-
-sudo reboot
-
-ip a
-
-eth0에 192:168.1.20이 나오면 성공
-
-이제 server.js를 실행시켜서 확인
 
 
 <계산>
