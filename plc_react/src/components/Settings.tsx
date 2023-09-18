@@ -4,10 +4,6 @@ import axios from 'axios';
 
 function Settings() {
 
-
-    const [readVoltage, setReadVolatage] = useState([]);
-    const [readOutput, setReadOutput] = useState([]);
-
     type MeasureData = {
         oldSendVoltage? :number,
         sendVoltage: number,
