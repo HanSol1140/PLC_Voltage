@@ -39,14 +39,14 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const path_1 = __importDefault(require("path"));
 // 라우터
-const ipRoutes_1 = __importDefault(require("/home/nanonix/PLC_Voltage/plc_server/routers/ipRoutes"));
-const scaleRoutes_1 = __importDefault(require("/home/nanonix/PLC_Voltage/plc_server/routers/scaleRoutes"));
-const measureRoutes_1 = __importDefault(require("/home/nanonix/PLC_Voltage/plc_server/routers/measureRoutes"));
+const ipRoutes_js_1 = __importDefault(require("/home/nanonix/PLC_Voltage/plc_server/routers/ipRoutes.js"));
+const scaleRoutes_js_1 = __importDefault(require("/home/nanonix/PLC_Voltage/plc_server/routers/scaleRoutes.js"));
+const measureRoutes_js_1 = __importDefault(require("/home/nanonix/PLC_Voltage/plc_server/routers/measureRoutes.js"));
 // 컨트롤러 호출
-const IPController = __importStar(require("/home/nanonix/PLC_Voltage/plc_server/controller/ipController"));
-const MeasureController = __importStar(require("/home/nanonix/PLC_Voltage/plc_server/controller/measureController"));
-const ScaleController = __importStar(require("/home/nanonix/PLC_Voltage/plc_server/controller/scaleController"));
-const PLC = __importStar(require("/home/nanonix/PLC_Voltage/plc_server/controller/plcController"));
+const IPController = __importStar(require("/home/nanonix/PLC_Voltage/plc_server/controller/ipController.js"));
+const MeasureController = __importStar(require("/home/nanonix/PLC_Voltage/plc_server/controller/measureController.js"));
+const ScaleController = __importStar(require("/home/nanonix/PLC_Voltage/plc_server/controller/scaleController.js"));
+const PLC = __importStar(require("/home/nanonix/PLC_Voltage/plc_server/controller/plcController.js"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
@@ -55,18 +55,19 @@ const server = app.listen(PORT, () => {
     console.log("서버시작 : PORT " + PORT);
 });
 // 리액트 페이지 접속
-app.use(express_1.default.static('build'));
-app.get('/', (req, res) => {
-    res.redirect('/index.html');
-});
 // 라우터 분리
-app.use('/', ipRoutes_1.default);
-app.use('/', scaleRoutes_1.default);
-app.use('/', measureRoutes_1.default);
-// 모든경로 index.html로 라우팅(SPA)
-app.get('*', (req, res) => {
-    res.sendFile(path_1.default.join(__dirname, 'build', 'index.html'));
+app.use('/', ipRoutes_js_1.default);
+app.use('/', scaleRoutes_js_1.default);
+app.use('/', measureRoutes_js_1.default);
+// 리액트 페이지 staic 설정
+app.use(express_1.default.static('/home/nanonix/PLC_Voltage/plc_server/build/'));
+app.get('/', (req, res) => {
+    res.sendFile(path_1.default.join(__dirname, '/home/nanonix/PLC_Voltage/plc_server/build', 'index.html'));
 });
+// 모든경로 index.html로 라우팅(SPA)
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, '/home/nanonix/PLC_Voltage/plc_server/build/index.html'));
+// });
 // SetIP.json 메모리에 로드
 const plcIP = IPController.getIP().plcIP;
 // console.log("PLC의 IP : " + plcIP);
@@ -123,7 +124,7 @@ function dataChange(inputValue) {
                 var onePoint = (nextReceiveVoltage - prevReceiveVoltage) / (nextVoltage - prevVoltage);
                 // 현재 넣은 값의 반환값
                 var intputReceiveVoltage = prevReceiveVoltage + ((inputValue - prevVoltage) * onePoint);
-                var convertScale = intputReceiveVoltage / inputScale;
+                var convertScale = intputReceiveVoltage / outputScale;
                 var calibration = VVCFVoltage / convertScale;
                 const D1500 = Math.round((calibration * convertScale) * 10);
                 PLC.writeVoltage(1500, D1500);

@@ -116,7 +116,7 @@ async function dataChange (inputValue: number) {
             // 현재 넣은 값의 반환값
             var intputReceiveVoltage = prevReceiveVoltage + ((inputValue - prevVoltage) * onePoint);
             
-            var convertScale = intputReceiveVoltage / inputScale;
+            var convertScale = intputReceiveVoltage / outputScale;
 
             var calibration = VVCFVoltage/convertScale;
 
