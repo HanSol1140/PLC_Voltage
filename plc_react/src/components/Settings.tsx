@@ -283,8 +283,8 @@ function Settings() {
                     </ul>
                     <ul className='inputvalue'>
                         <li><input type="number" id="sendVoltage" name="sendVoltage" placeholder='ex) 60' onChange={onChange} /></li>
-                        <li><input type="number" id="receiveVoltage" name="receiveVoltage" placeholder='ex) 65.8' onChange={onChange} /></li>
-                        <li><input type="number" id="vvcfVoltage" name="vvcfVoltage" placeholder='ex) 809' onChange={onChange} /></li>
+                        <li><input type="number" id="receiveVoltage" name="receiveVoltage" placeholder='ex) 809' onChange={onChange} /></li>
+                        <li><input type="number" id="vvcfVoltage" name="vvcfVoltage" placeholder='ex) 65.8' onChange={onChange} /></li>
                         <li><button onClick={setMeasure}>저장</button></li>
                     </ul>
                 </ul>
