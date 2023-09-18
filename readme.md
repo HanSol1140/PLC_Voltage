@@ -63,9 +63,36 @@ SD카드 리더기에 SD카드를 꽂고, PC에 연결하여 자신의 운영체
     2. 그래도 안된다면 sudo ibus-setup 후 오류메세지가 출력될텐데
        무시하고 Hangul설정후 재부팅후 다시 ibus-setup으로 접속해서 한글이 추가되었는지 확인해보세요.
 ```
+## 3. node.js 설치
+터미널 실행
+```
+  sudo apt-get update
+  sudo apt-get install -y nodejs npm
+  node -v
+  npm -v
+```
 
-## 3. 프로그램 다운로드
-  https://github.com/HanSol1140/PLC_Voltage
+node와 npm이 구버전임을 확인할 수 있습니다.
+
+nodejs 다운로드 페이지 Linux Binaries (ARM) - ARM7 다운로드 후 home/hostname 경로로 이동시키기
+
+node-v18.16.1-linux-armv7l.tar.xz 압축해제
+
+터미널을 실행합니다.
+```
+  echo 'export PATH=$HOME/node-v18.16.1-linux-armv7l/bin:$PATH' > ~/.bashrc
+  source ~/.bashrc
+```
+버전을 확입합니다.
+```
+ npm -v
+ node -v
+```
+확인됬다면 reboot해주세요.
+
+
+## 4. 프로그램 다운로드
+  <a href="https://github.com/HanSol1140/PLC_Voltage">https://github.com/HanSol1140/PLC_Voltage</a>
   해당 경로로 이동
 
   ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/b1c5aa36-5653-4ba8-ad90-8555e2b8fd8e)
@@ -74,7 +101,19 @@ SD카드 리더기에 SD카드를 꽂고, PC에 연결하여 자신의 운영체
 
   ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/3a6c32a7-3e35-4d33-b45d-5d542a1fa4ce)
 
-  
+  ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/84e9f9f9-d70a-4751-b054-63bb2707cdc3)
+
+  터미널을 켜서 압축 해제된 PLC_Voltage-master에 접속해 리액트와 서버를 실행해봅니다
+  리액트 확인
+  터미널을 실행
+  ```
+    cd PLC_Voltage
+    cd plc_react
+    npm install
+
+    설치가 끝난뒤
+    npm start
+  ```
 
   
 
