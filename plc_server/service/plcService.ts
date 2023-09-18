@@ -6,29 +6,18 @@ const IP = '192.168.1.2';
 const Port = 502;
 
 // Modbus TCP로 연결
-
-
-
-const MAX_RETRIES = 10; // 최대 재시도 횟수
 const RETRY_INTERVAL = 5000; // 재시도 간격 (5초)
 
-// Modbus TCP로 연결
+// Modbus TCP로 연결 시도(연결될때까지)
 export const connectToPLC = async(IP:string, Port:number) => {
-    let retries = 0;
-
-    while (retries < MAX_RETRIES) {
+    while (true) {
         try {
             await client.connectTCP(IP, { port: Port, timeout: 3000 });
             console.log('PLC에 연결됨');
             return; // 연결 성공 시 함수를 종료합니다.
         } catch (error) {
-            retries++;
-            console.error(`PLC 연결 오류 (재시도 ${retries}/${MAX_RETRIES}):`, error);
-            if (retries < MAX_RETRIES) {
-                await new Promise(res => setTimeout(res, RETRY_INTERVAL)); // 일정 간격 후 재시도
-            } else {
-                console.error('최대 재시도 횟수를 초과했습니다. PLC 연결에 실패했습니다.');
-            }
+            console.error(`PLC 연결 오류, 재시도 중...:`, error);
+            await new Promise(res => setTimeout(res, RETRY_INTERVAL)); // 일정 간격 후 재시도
         }
     }
 }
