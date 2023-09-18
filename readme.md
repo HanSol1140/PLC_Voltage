@@ -101,19 +101,26 @@ node-v18.16.1-linux-armv7l.tar.xz 압축해제
 
   ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/3a6c32a7-3e35-4d33-b45d-5d542a1fa4ce)
 
+  
   ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/84e9f9f9-d70a-4751-b054-63bb2707cdc3)
 
-  터미널을 켜서 압축 해제된 PLC_Voltage-master에 접속해 리액트와 서버를 실행해봅니다
-  리액트 확인
-  터미널을 실행
+  압축 해제된 폴더의 폴더명에서 '-master'부분을 지워주세요
+  ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/f9c881f0-6bf7-4608-8cf8-25645a0670c8)
+
+
+  이제 터미널을 켜서 압축 해제된 PLC_Voltage에 접속해 리액트와 서버를 실행해봅니다
+  
+  서버 실행 확인
   ```
     cd PLC_Voltage
-    cd plc_react
-    npm install
-
-    설치가 끝난뒤
-    npm start
+    cd plc_server
+    node server.js
   ```
+
+
+  ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/af7fa0a2-d4af-4d8c-88b7-0368e733d189)
+
+  서버가 실행됬다면 브라우저를 실행해 localhost:8888로 접속해봅니다.
 
   
 
