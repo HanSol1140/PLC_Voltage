@@ -81,6 +81,19 @@ SD카드 리더기에 SD카드를 꽂고, PC에 연결하여 자신의 운영체
 
 이후 운영체제 설치과정 생략
 
+터미널을 입력후 다음 명령어를 실행해주세요
+```
+  sudo nano /etc/dhcpcd.conf
+```
+파일 편집기가 실행되면 제일 하단부로 이동하여
+interface eth0
+static ip_address=192.168.1.20/24
+static routers=192.168.1.1
+static domain_name_servers=192.168.1.1
+을 입력
+Ctrl + S / Ctrl + X로 편집기를 종료해주세요.
+
+
 ##. 2. 설치후 라즈베리파이에 한글설정
 
 한글 설정을 해주지 않으면 영어는 사용할 수 있지만
