@@ -48,8 +48,8 @@ const plcIP = IPController.getIP().plcIP;
 // console.log("PLC의 IP : " + plcIP);
 
 // SetScale.json 메모리에 로드
-var inputScale = ScaleController.getScale().inputScale;
 var outputScale = ScaleController.getScale().outputScale;
+var inputScale = ScaleController.getScale().inputScale;
 // console.log("스케일 : " + scale);
 
 // SetMeasure.json 메모리에 로드
@@ -105,7 +105,7 @@ async function dataChange (inputValue: number) {
                     VVCFVoltage = VVCFVoltage + (nextVVCFVoltage-prevVVCFVoltage) / (nextVoltage - prevVoltage);
                 }
             // }
-            let multiple =  (inputValue * inputScale) / VVCFVoltage;
+            let multiple =  (inputValue * outputScale) / VVCFVoltage;
             const D1000 = Math.round(inputValue * multiple);
             PLC.writeVoltage(1000, D1000);
             console.log("D1000에 입력" + D1000);
@@ -116,7 +116,7 @@ async function dataChange (inputValue: number) {
             // 현재 넣은 값의 반환값
             var intputReceiveVoltage = prevReceiveVoltage + ((inputValue - prevVoltage) * onePoint);
             
-            var convertScale = intputReceiveVoltage / outputScale;
+            var convertScale = intputReceiveVoltage / inputScale;
 
             var calibration = VVCFVoltage/convertScale;
 

@@ -262,14 +262,14 @@ function Settings() {
                 <h3>scale 얻기</h3>
                 <div className='scale'>
                     <ul >
-                        <li>Output Analog Span <input type="number" id="inputScaleOutput" name="inputScaleOutput" placeholder='ex)4000' value={inputText.inputScaleOutput} onChange={onChange} /></li>
-                        <li>Output Volt Span <input type="number" id="inputScaleVoltage" name="inputScaleVoltage" placeholder='ex)330' value={inputText.inputScaleVoltage} onChange={onChange} /></li>
-                        <h3>Scale : {inputText.inputScale}</h3><br />
+                        <li>Output Analog Span <input type="number" id="outputScaleOutput" name="outputScaleOutput" placeholder='ex)4000' value={inputText.outputScaleOutput} onChange={onChange} /></li>
+                        <li>Output Volt Span <input type="number" id="outputScaleVoltage    " name="outputScaleVoltage" placeholder='ex)330' value={inputText.outputScaleVoltage} onChange={onChange} /></li>
+                        <h3>Output Scale : {inputText.inputScale}</h3><br />
                     </ul>
                     <ul>
-                        <li>Output Analog Span <input type="number" id="outputScaleOutput" name="outputScaleOutput" placeholder='ex)4000' value={inputText.outputScaleOutput} onChange={onChange} /></li>
-                        <li>Output Volt Span <input type="number" id="outputScaleVoltage" name="outputScaleVoltage" placeholder='ex)330' value={inputText.outputScaleVoltage} onChange={onChange} /></li>
-                        <h3>Scale : {inputText.outputScale}</h3><br />
+                        <li>Input Analog Span <input type="number" id="inputScaleOutput" name="inputScaleOutput" placeholder='ex)4000' value={inputText.inputScaleOutput} onChange={onChange} /></li>
+                        <li>Input Volt Span <input type="number" id="inputScaleVoltage" name="inputScaleVoltage" placeholder='ex)330' value={inputText.inputScaleVoltage} onChange={onChange} /></li>
+                        <h3>Input Scale : {inputText.outputScale}</h3><br />
                     </ul>
                     <button onClick={setScale}>저장</button>
                 </div><br/>
