@@ -38,7 +38,7 @@
   라즈베리파이의 브라우저를 실행 후
   localhost:8888으로 접속하면 설정페이지에 접속됩니다.
 
-  ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/4d24d394-2773-4fab-95bb-ba0b7386094d)
+  ![image](https://github.com/HanSol1140/PLC_Voltage/assets/121269266/4743b159-3f7b-44fd-957a-684aa2d325fb)
 
   여기서 원하는 값으로 변경 후 라즈베리파이를 재부팅해주세요.
 
